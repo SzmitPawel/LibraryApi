@@ -9,6 +9,7 @@ import org.springframework.lang.NonNull;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "READERS")
@@ -20,7 +21,7 @@ public class Readers {
     private String readerName;
     private String readerSurname;
     private LocalDate dateCreateAccount;
-    private List<Rentials> rentialsList = new ArrayList<>();
+    private List<Rentals> rentalsList = new ArrayList<>();
 
     @Id
     @GeneratedValue
@@ -43,5 +44,13 @@ public class Readers {
     @Column(name = "READER_DATE_CREATE_ACCOUNT")
     public LocalDate getDateCreateAccount() {
         return dateCreateAccount;
+    }
+
+    @OneToMany(targetEntity = Rentals.class,
+               mappedBy = "readers",
+               fetch = FetchType.LAZY,
+               cascade = CascadeType.ALL)
+    public List<Rentals> getRentalsList() {
+        return rentalsList;
     }
 }
