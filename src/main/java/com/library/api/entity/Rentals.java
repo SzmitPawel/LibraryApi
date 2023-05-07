@@ -17,7 +17,7 @@ public class Rentals {
     private LocalDate rentalDate;
     private LocalDate returnDate;
     private Readers readers;
-    private List<Copy> copyList = new ArrayList<>();
+    private Copy copy;
 
     @Id
     @GeneratedValue
@@ -37,8 +37,10 @@ public class Rentals {
         return returnDate;
     }
 
-    public List<Copy> getCopyList() {
-        return copyList;
+    @ManyToOne
+    @JoinColumn(name = "ID_COPY")
+    public Copy getCopy() {
+        return copy;
     }
 
     @ManyToOne
